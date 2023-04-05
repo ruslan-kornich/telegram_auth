@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <h1>Вже ввійшли</h1>
+        <a href="{% url 'logout' %}">
+            Вийти
+        </a>
+
+    {% else %}
+        <h1>{{ text }}</h1>
+
+        <div class="col-6">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Логін</label>
+                    <input type="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Логін" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Пароль</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль"
+                           name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Увійти</button>
+            </form>
+        </div>
+    {% endif %}
+
+{% endblock %}
