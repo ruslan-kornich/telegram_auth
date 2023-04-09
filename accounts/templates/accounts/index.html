@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>Hello</h1>
+
+    <div class="header-bar">
+        {% for user in users %}
+
+            <h3>Telegram profile @{{ user.username }}</h3>
+            {% if user.photo %}
+                <img src="{{ user.photo.url }}" alt="img" width="160" height="160">
+            {% else %}
+                <img src="{% static 'photo/default.png' %}" height=100 width=100><br><br>
+            {% endif %}
+            <div class="d-flex justify-content-right">
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fa fa-user-o" aria-hidden="true"></i>
+                            Username: {{ user.username }}</li>
+                        <li class="list-group-item"><i class="fa fa-user" aria-hidden="true"></i> First
+                            name: {{ user.first_name }}</li>
+                        <li class="list-group-item"><i class="fa fa-address-card" aria-hidden="true"></i> Last
+                            name: {{ user.last_name }}</li>
+                        <li class="list-group-item"><i class="fa fa-telegram" aria-hidden="true"></i>
+                            Telegram_id: {{ user.telegram_id }}</li>
+
+                    </ul>
+                </div>
+            </div>
 
 
-{% endblock %}
+            <hr>
+        {% endfor %}
+
+    </div>
+
+
+
+{% endblock content %}

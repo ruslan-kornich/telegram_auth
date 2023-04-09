@@ -8,7 +8,7 @@ class Profile(AbstractUser):
     username = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    photo = models.ImageField(blank=True, null=True, upload_to="media/photos")
+    photo = models.ImageField(blank=True, null=True, upload_to="photo/")
 
     def __str__(self):
         return self.username
